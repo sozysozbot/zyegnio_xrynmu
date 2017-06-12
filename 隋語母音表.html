@@ -13,6 +13,8 @@ table {text-align:center;margin: 10px;}
 <body>
 
 <script>
+var all = ["uŋ","yuŋ","oŋ","yoŋ","roŋ","ie","rie","ye","rye","i","ri","yi","ryi","iə","iəi","yui","io","yo","o","ei","uei","iei","riei","yei","ryei","ai","uai","re","rue","rei","ruei","rai","ruai","ui","əi","iai","yoi","in","rin","ryn","yn","rin","yun","iən","un","ən","ian","yon","an","uan","ran","ruan","ren","ruen","en","uen","ien","rien","yen","ryen","eu","ieu","rieu","rau","au","a","ua","ia","ya","ra","rua","ia","iaŋ","yaŋ","aŋ","uaŋ","raŋ","ruaŋ","rieŋ","ryeŋ","reŋ","rueŋ","ieŋ","rieŋ","yeŋ","ryeŋ","eŋ","ueŋ","iəŋ","ryək","əŋ","uəŋ","yu","u","iu","riu","im","rim","əm","am","iem","riem","em","iam","yom","rem","ram"];
+
 function generate(id,isBase){
 var str='<table id="'+id+'" border="1">\
 <tr>\
@@ -25,36 +27,39 @@ var str='<table id="'+id+'" border="1">\
 	<td colspan="5"><span class="main">ə</span></td>\
 </tr>\
 <tr>\
-<td></td>'+'\
-	<td><span class="kaihom">-0-</span></td><td><span class="kaihom">-r-</span></td><td><span class="kaihom">-i-</span></td><td><span class="kaihom">-u-</span></td><td><span class="kaihom">-ru-</span></td><td><span class="kaihom">-y-</span></td>\
-	<td><span class="kaihom">-0-</span></td><td><span class="kaihom">-r-</span></td><td><span class="kaihom">-i-</span></td><td><span class="kaihom">-ri-</span></td><td><span class="kaihom">-u-</span></td><td><span class="kaihom">-ru-</span></td><td><span class="kaihom">-y-</span></td>\
-	<td><span class="kaihom">-0-</span></td><td><span class="kaihom">-r-</span></td><td><span class="kaihom">-u-</span></td><td><span class="kaihom">-ru-</span></td>\
-	<td><span class="kaihom">-0-</span></td><td><span class="kaihom">-r-</span></td><td><span class="kaihom">-i-</span></td><td><span class="kaihom">-y-</span></td>\
-	<td><span class="kaihom">-0-</span></td><td><span class="kaihom">-i-</span></td>\
-	<td><span class="kaihom">-0-</span></td><td><span class="kaihom">-i-</span></td><td><span class="kaihom">-ri-</span></td><td><span class="kaihom">-u-</span></td><td><span class="kaihom">-y-</span></td>\
-	\
-</tr>';
+<td></td>';
+
+function getKaihomRow(arr){
+	var t = '';
+	for(var i=0;i<arr.length;i++){
+		t += '<td><span class="kaihom">-'+arr[i]+'-</span></td>';
+	}
+	return t;
+}
+str+=
+	getKaihomRow(['0','r','i','u','ru','y']) +
+	getKaihomRow(['0','r','i','ri','u','ru','y']) +
+	getKaihomRow(['i','ri','y','ry']) +
+	getKaihomRow(['0','r','i','y']) +
+	getKaihomRow(['u','y']) +
+	getKaihomRow(['0','i','ry','u','y']);
+str += '</tr>';
 
 function foo(main_v,kaihom_arr,end)
 {
 	var ans = '';
 	for(var i=0; i<kaihom_arr.length;i++) {
-		/*if(!isBase && kaihom_arr[i] === 'i' && main_v === '∅'){
-			ans += '<td><span class="merger">i</span>';
-		} else if(!isBase && kaihom_arr[i] === 'y' && main_v === '∅'){
-			ans += '<td><span class="merger">y</span>';	
-		} else if(!isBase && kaihom_arr[i] === 'u' && main_v === 'u'){
-			ans += '<td><span class="merger">u</span>';	
+		var tmp = (kaihom_arr[i] + main_v + end).replace(/i∅i/,"i").replace(/i∅(.)/,"i$1").replace(/y∅/,"y").replace(/uu/,"u");
+		if(all.indexOf(tmp) + 1) {
+			ans += '<td><span class="kaihom">'+kaihom_arr[i]+'</span><span class="main">'+main_v+'</span>'+end+'</td>';
+			if(!isBase) {
+				ans = ans.replace(/<span class="kaihom">(.*?)i<\/span><span class="main">∅/,'<span class="merger">$1i')
+				ans = ans.replace(/<span class="kaihom">(.*?)y<\/span><span class="main">∅/,'<span class="merger">$1y')
+				ans = ans.replace(/<span class="kaihom">(.*?)u<\/span><span class="main">u/,'<span class="merger">$1u')
+				ans = ans.replace('i</span>i</td>','i</span></td>');
+			}
 		} else {
-			
-		}*/
-
-		ans += '<td><span class="kaihom">'+kaihom_arr[i]+'</span><span class="main">'+main_v+'</span>'+end+'</td>';
-		if(!isBase) {
-			ans = ans.replace(/<span class="kaihom">(.*?)i<\/span><span class="main">∅/,'<span class="merger">$1i')
-			ans = ans.replace(/<span class="kaihom">(.*?)y<\/span><span class="main">∅/,'<span class="merger">$1y')
-			ans = ans.replace(/<span class="kaihom">(.*?)u<\/span><span class="main">u/,'<span class="merger">$1u')
-			ans = ans.replace('i</span>i</td>','i</span></td>');
+			ans += "<td></td>"
 		}
 	}
 	return ans;
@@ -67,7 +72,7 @@ return '<tr>'+'<td>-'+end+'</td>' +
 	foo('∅', ['i','ri','y','ry'],end) +
 	foo('o', ['','r','i','y'],end) +
 	foo('u', ['u','y'],end) +
-	foo('ə', ['','i','ri','u','y'],end) +
+	foo('ə', ['','i','ry','u','y'],end) +
 	'</tr>';
 }
 var ends = ["" ,"i","u","m","n","ŋ","p","t","k"]
