@@ -68,7 +68,7 @@ function foo(isBase, main_v,kaihom_arr,end)
 				t = t.replace(/<span class="kaihom">(.*?)u<\/span><span class="main">u/,'<span class="merger">$1u')
 				t = t.replace('i</span>i</td>','i</span></td>');
 			}
-			ans += t//.replace('</td>',"<br>"+search(tmp)+"</td>");
+			ans += t.replace('</td>',"<br>"+search(tmp)+"</td>");
 		} else {
 			ans += "<td></td>"
 		}
