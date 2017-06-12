@@ -6,14 +6,15 @@
 <style>
 .kaihom{color:red;}
 .main{color:blue;}
-table {text-align:center;}
+.merger{color:#c0c;}
+table {text-align:center;margin: 10px;}
 </style>
 </head>
 <body>
 
 <script>
-var str='\
-<table border="1">\
+function generate(id,isBase){
+var str='<table id="'+id+'" border="1">\
 <tr>\
 	<td></td>\
 	<td colspan="6"><span class="main">a</span></td>\
@@ -24,45 +25,61 @@ var str='\
 	<td colspan="5"><span class="main">ə</span></td>\
 </tr>\
 <tr>\
-	<td></td>\
+<td></td>'+'\
 	<td><span class="kaihom">-0-</span></td><td><span class="kaihom">-r-</span></td><td><span class="kaihom">-i-</span></td><td><span class="kaihom">-u-</span></td><td><span class="kaihom">-ru-</span></td><td><span class="kaihom">-y-</span></td>\
 	<td><span class="kaihom">-0-</span></td><td><span class="kaihom">-r-</span></td><td><span class="kaihom">-i-</span></td><td><span class="kaihom">-ri-</span></td><td><span class="kaihom">-u-</span></td><td><span class="kaihom">-ru-</span></td><td><span class="kaihom">-y-</span></td>\
-	<td><span class="kaihom">-i-</span></td><td><span class="kaihom">-r-</span></td><td><span class="kaihom">-u-</span></td><td><span class="kaihom">-ru-</span></td>\
+	<td><span class="kaihom">-0-</span></td><td><span class="kaihom">-r-</span></td><td><span class="kaihom">-u-</span></td><td><span class="kaihom">-ru-</span></td>\
 	<td><span class="kaihom">-0-</span></td><td><span class="kaihom">-r-</span></td><td><span class="kaihom">-i-</span></td><td><span class="kaihom">-y-</span></td>\
 	<td><span class="kaihom">-0-</span></td><td><span class="kaihom">-i-</span></td>\
 	<td><span class="kaihom">-0-</span></td><td><span class="kaihom">-i-</span></td><td><span class="kaihom">-ri-</span></td><td><span class="kaihom">-u-</span></td><td><span class="kaihom">-y-</span></td>\
 	\
 </tr>';
 
-function foo(main_v,kaihom_arr)
+function foo(main_v,kaihom_arr,end)
 {
 	var ans = '';
 	for(var i=0; i<kaihom_arr.length;i++) {
-		ans += '<td><span class="kaihom">'+kaihom_arr[i]+'</span><span class="main">'+main_v+'</span>Q</td>';
+		/*if(!isBase && kaihom_arr[i] === 'i' && main_v === '∅'){
+			ans += '<td><span class="merger">i</span>';
+		} else if(!isBase && kaihom_arr[i] === 'y' && main_v === '∅'){
+			ans += '<td><span class="merger">y</span>';	
+		} else if(!isBase && kaihom_arr[i] === 'u' && main_v === 'u'){
+			ans += '<td><span class="merger">u</span>';	
+		} else {
+			
+		}*/
+
+		ans += '<td><span class="kaihom">'+kaihom_arr[i]+'</span><span class="main">'+main_v+'</span>'+end+'</td>';
+		if(!isBase) {
+			ans = ans.replace(/<span class="kaihom">(.*?)i<\/span><span class="main">∅/,'<span class="merger">$1i')
+			ans = ans.replace(/<span class="kaihom">(.*?)y<\/span><span class="main">∅/,'<span class="merger">$1y')
+			ans = ans.replace(/<span class="kaihom">(.*?)u<\/span><span class="main">u/,'<span class="merger">$1u')
+		}
 	}
 	return ans;
 }
-
-var row = '<tr>'+'<td>-Q</td>' +
-	foo('a', ['','r','i','u','ru','y']) +
-	foo('e', ['','r','i','ri','u','ru','y']) +
-	foo('∅', ['i','ri','y','ry']) +
-	foo('o', ['','r','i','y']) +
-	foo('u', ['u','y']) +
-	foo('ə', ['','i','ri','u','y']) +
+function getRow(end)
+{
+return '<tr>'+'<td>-Q</td>' +
+	foo('a', ['','r','i','u','ru','y'],end) +
+	foo('e', ['','r','i','ri','u','ru','y'],end) +
+	foo('∅', ['i','ri','y','ry'],end) +
+	foo('o', ['','r','i','y'],end) +
+	foo('u', ['u','y'],end) +
+	foo('ə', ['','i','ri','u','y'],end) +
 	'</tr>';
+}
+var ends = ["" ,"i","u","m","n","ŋ","p","t","k"]
 
-str += row.replace(/Q/g,"");
-str += row.replace(/Q/g,"i");
-str += row.replace(/Q/g,"u");
-str += row.replace(/Q/g,"m");
-str += row.replace(/Q/g,"n");
-str += row.replace(/Q/g,"ŋ");
-str += row.replace(/Q/g,"p");
-str += row.replace(/Q/g,"t");
-str += row.replace(/Q/g,"k");
+for(var i=0;i<ends.length;i++){
+	str += getRow(ends[i]);	
+}
+
 str += '</table>';
 document.write(str);
+}
+generate('actual');
+generate('base', true);
 </script>
 </body>
 </html>
