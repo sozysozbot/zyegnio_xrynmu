@@ -9,106 +9,13 @@
 .merger{color:#c0c;}
 table {text-align:center;margin: 10px;}
 </style>
+<script type="text/javascript" src="main.js"></script>
 </head>
 <body>
 
 <script>
-var all = ["uŋ","yuŋ","oŋ","yoŋ","roŋ","ie","rie","ye","rye","i","ri","yi","ryi","iə","iəi","yui","io","yo","o","ei","uei","iei","riei","yei","ryei","ai","uai","re","rue","rei","ruei","rai","ruai","ui","əi","iai","yoi","in","rin","ryn","yn",/*"rin",*/"yun","iən","un","ən","ian","yon","an","uan","ran","ruan","ren","ruen","en","uen","ien","rien","yen","ryen","eu","ieu","rieu","rau","au","a","ua","ia","ya","ra","rua",/*"ia",*/"iaŋ","yaŋ","aŋ","uaŋ","raŋ","ruaŋ","rieŋ","ryeŋ","reŋ","rueŋ","ieŋ",/*"rieŋ",*/"yeŋ",/*"ryeŋ",*/"eŋ","ueŋ","iəŋ","ryək","əŋ","uəŋ","yu","u","iu","riu","im","rim","əm","am","iem","riem","em","iam","yom","rem","ram",
-"uk","yuk","ok","yok","rok",
-"it","rit","ryt","yt","yut","iət","ut","ət","iat",
-"yot","at","uat","rat","ruat","ret","ruet",
-"et","uet","iet","riet","yet","ryet",
-"iak","yak","ak","uak","rak","ruak",
-"riek","ryek","rek","ruek","iek",
-"yek","ek","uek","iək","ək","uək",
-"ip","rip","əp","ap","iep","riep","ep","iap","yop","rep","rap"
-];
-var all2 = [];
 
-function generate(id,isBase){
-var str='<table id="'+id+'" border="1">\
-<tr>\
-	<td></td>\
-	<td colspan="6"><span class="main">a</span></td>\
-	<td colspan="8"><span class="main">e</span></td>\
-	<td colspan="4"><span class="kaihom">介i</span>+<span class="main">主∅</span></td>\
-	<td colspan="4"><span class="main">o</span></td>\
-	<td colspan="2"><span class="kaihom">介u</span>+<span class="main">主u</span></td>\
-	<td colspan="4"><span class="main">ə</span></td>\
-</tr>\
-<tr>\
-<td></td>';
 
-function getKaihomRow(arr){
-	var t = '';
-	for(var i=0;i<arr.length;i++){
-		t += '<td><span class="kaihom">-'+arr[i]+'-</span></td>';
-	}
-	return t;
-}
-str+=
-	getKaihomRow(['0','r','i','u','ru','y']) +
-	getKaihomRow(['0','r','i','ri','u','ru','y', 'ry']) +
-	getKaihomRow(['i','ri','y','ry']) +
-	getKaihomRow(['0','r','i','y']) +
-	getKaihomRow(['u','y']) +
-	getKaihomRow(['0','i','u','ry']);
-str += '</tr>';
-
-function foo(main_v,kaihom_arr,end)
-{
-	var ans = '';
-	for(var i=0; i<kaihom_arr.length;i++) {
-
-		var top = (kaihom_arr[i] + main_v).replace(/i∅/,"i").replace(/y∅/,"y").replace(/uu/,"u");
-
-		var tmp = (top + end);
-		if(top === "i" || top === "ri") {
-			if(end === "") {
-				tmp = null;
-			} else if(end === "i") {
-				tmp = tmp.replace(/ii/,"i");
-			}
-		}
-
-		if(top === "y" && end === "u") {
-			tmp = null;
-		}
-		
-		if(all.indexOf(tmp) + 1) {
-			ans += '<td><span class="kaihom">'+kaihom_arr[i]+'</span><span class="main">'+main_v+'</span>'+end+'</td>';
-			if(!isBase) {
-				ans = ans.replace(/<span class="kaihom">(.*?)i<\/span><span class="main">∅/,'<span class="merger">$1i')
-				ans = ans.replace(/<span class="kaihom">(.*?)y<\/span><span class="main">∅/,'<span class="merger">$1y')
-				ans = ans.replace(/<span class="kaihom">(.*?)u<\/span><span class="main">u/,'<span class="merger">$1u')
-				ans = ans.replace('i</span>i</td>','i</span></td>');
-			}
-		} else {
-			ans += "<td></td>"
-		}
-	}
-	return ans;
-}
-function getRow(end)
-{
-return '<tr>'+'<td>-'+end+'</td>' +
-	foo('a', ['','r','i','u','ru','y'],end) +
-	foo('e', ['','r','i','ri','u','ru','y', 'ry'],end) +
-	foo('∅', ['i','ri','y','ry'],end) +
-	foo('o', ['','r','i','y'],end) +
-	foo('u', ['u','y'],end) +
-	foo('ə', ['','i','u','ry'],end) +
-	'</tr>';
-}
-var ends = ["" ,"i","u","m","p","n","t","ŋ","k"]
-
-for(var i=0;i<ends.length;i++){
-	str += getRow(ends[i]);	
-}
-
-str += '</table>';
-document.write(str);
-}
 document.write('<h3>表層形</h3>')
 generate('actual');
 document.write('<h3>基底形</h3>')
