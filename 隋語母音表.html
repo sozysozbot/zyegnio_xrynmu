@@ -54,13 +54,14 @@ function foo(main_v,kaihom_arr,end)
 			ans = ans.replace(/<span class="kaihom">(.*?)i<\/span><span class="main">∅/,'<span class="merger">$1i')
 			ans = ans.replace(/<span class="kaihom">(.*?)y<\/span><span class="main">∅/,'<span class="merger">$1y')
 			ans = ans.replace(/<span class="kaihom">(.*?)u<\/span><span class="main">u/,'<span class="merger">$1u')
+			ans = ans.replace('i</span>i</td>','i</span></td>');
 		}
 	}
 	return ans;
 }
 function getRow(end)
 {
-return '<tr>'+'<td>-Q</td>' +
+return '<tr>'+'<td>-'+end+'</td>' +
 	foo('a', ['','r','i','u','ru','y'],end) +
 	foo('e', ['','r','i','ri','u','ru','y'],end) +
 	foo('∅', ['i','ri','y','ry'],end) +
@@ -78,7 +79,9 @@ for(var i=0;i<ends.length;i++){
 str += '</table>';
 document.write(str);
 }
+document.write('<h3>表層形</h3>')
 generate('actual');
+document.write('<h3>基底形</h3>')
 generate('base', true);
 </script>
 </body>
