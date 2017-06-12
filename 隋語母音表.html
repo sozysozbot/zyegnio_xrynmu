@@ -33,13 +33,24 @@ var str='\
 	<td><span class="kaihom">-0-</span></td><td><span class="kaihom">-i-</span></td><td><span class="kaihom">-ri-</span></td><td><span class="kaihom">-u-</span></td><td><span class="kaihom">-y-</span></td>\
 	\
 </tr>';
-var row = '<tr>'+'<td>-Q</td>'+
-	'<td><span class="main">a</span>Q</td><td><span class="kaihom">r</span><span class="main">a</span>Q</td><td><span class="kaihom">i</span><span class="main">a</span>Q</td><td><span class="kaihom">u</span><span class="main">a</span>Q</td><td><span class="kaihom">ru</span><span class="main">a</span>Q</td><td><span class="kaihom">y</span><span class="main">a</span>Q</td>'+
-	'<td><span class="main">e</span>Q</td><td><span class="kaihom">r</span><span class="main">e</span>Q</td><td><span class="kaihom">i</span><span class="main">e</span>Q</td><td><span class="kaihom">ri</span><span class="main">e</span>Q</td><td><span class="kaihom">u</span><span class="main">e</span>Q</td><td><span class="kaihom">ru</span><span class="main">e</span>Q</td><td><span class="kaihom">y</span><span class="main">e</span>Q</td>'+
-	'<td><span class="kaihom">i</span><span class="main">∅</span>Q</td><td><span class="kaihom">ri</span><span class="main">∅</span>Q</td><td><span class="kaihom">y</span><span class="main">∅</span>Q</td><td><span class="kaihom">ry</span><span class="main">∅</span>Q</td>'+
-	'<td><span class="main">o</span>Q</td><td><span class="kaihom">r</span><span class="main">o</span>Q</td><td><span class="kaihom">i</span><span class="main">o</span>Q</td><td><span class="kaihom">y</span><span class="main">o</span>Q</td>'+
-	'<td><span class="kaihom">u</span><span class="main">u</span>Q</td><td><span class="kaihom">y</span><span class="main">u</span>Q</td>'+
-	'<td><span class="main">ə</span>Q</td><td><span class="kaihom">i</span><span class="main">ə</span>Q</td><td><span class="kaihom">ri</span><span class="main">ə</span>Q</td><td><span class="kaihom">u</span><span class="main">ə</span>Q</td><td><span class="kaihom">y</span><span class="main">ə</span>Q</td>'+'</tr>';
+
+function foo(main_v,kaihom_arr)
+{
+	var ans = '';
+	for(var i=0; i<kaihom_arr.length;i++) {
+		ans += '<td><span class="kaihom">'+kaihom_arr[i]+'</span><span class="main">'+main_v+'</span>Q</td>';
+	}
+	return ans;
+}
+
+var row = '<tr>'+'<td>-Q</td>' +
+	foo('a', ['','r','i','u','ru','y']) +
+	foo('e', ['','r','i','ri','u','ru','y']) +
+	foo('∅', ['i','ri','y','ry']) +
+	foo('o', ['','r','i','y']) +
+	foo('u', ['u','y']) +
+	foo('ə', ['','i','ri','u','y']) +
+	'</tr>';
 
 str += row.replace(/Q/g,"");
 str += row.replace(/Q/g,"i");
