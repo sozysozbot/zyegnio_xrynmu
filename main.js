@@ -80,12 +80,12 @@ function foo(isBase, main_v,kaihom_arr,end)
 function getRow(isBase, end)
 {
 	return '<tr>'+'<td>-'+end+'</td>' +
-		foo(isBase,'e', ['','r','i','ri','u','ru','y', 'ry'],end) +
-		foo(isBase,'a', ['','r','i','u','ru','y'],end) +
-		foo(isBase,'∅', ['i','ri','y','ry'],end) +
-		foo(isBase,'o', ['','r','i','y'],end) +
+		foo(isBase,'e', ['r','ru','','u','ri','ry','i','y'],end) +
+		foo(isBase,'a', ['r','ru','','u','i','y'],end) +
+		foo(isBase,'ə', ['','u','ry','i'],end) +
+		foo(isBase,'o', ['r','','i','y'],end) +
 		foo(isBase,'u', ['u','y'],end) +
-		foo(isBase,'ə', ['','i','u','ry'],end) +
+		foo(isBase,'∅', ['ri','ry','i','y'],end) +
 		'</tr>';
 }
 
@@ -97,22 +97,22 @@ function generate(id,isBase){
 		<td></td>\
 		<td colspan="8"><span class="main">e</span></td>\
 		<td colspan="6"><span class="main">a</span></td>\
-		<td colspan="4"><span class="kaihom">介i</span>+<span class="main">主∅</span></td>\
+		<td colspan="4"><span class="main">ə</span></td>\
 		<td colspan="4"><span class="main">o</span></td>\
 		<td colspan="2"><span class="kaihom">介u</span>+<span class="main">主u</span></td>\
-		<td colspan="4"><span class="main">ə</span></td>\
+		<td colspan="4"><span class="kaihom">介i</span>+<span class="main">主∅</span></td>\
 	</tr>\
 	<tr>\
 	<td></td>';
 
 
 	str+=
-		getKaihomRow(['0','r','i','ri','u','ru','y', 'ry']) +
-		getKaihomRow(['0','r','i','u','ru','y']) +
-		getKaihomRow(['i','ri','y','ry']) +
-		getKaihomRow(['0','r','i','y']) +
+		getKaihomRow(['r','ru','0','u','ri','ry','i','y']) +
+		getKaihomRow(['r','ru','0','u','i','y']) +
+		getKaihomRow(['0','u','ry','i'])+
+		getKaihomRow(['r','0','i','y']) +
 		getKaihomRow(['u','y']) +
-		getKaihomRow(['0','i','u','ry']);
+		getKaihomRow(['ri','ry','i','y']);
 	str += '</tr>';
 
 
