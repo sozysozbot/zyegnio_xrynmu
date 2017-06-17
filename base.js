@@ -56,6 +56,14 @@ function foo(isBase, main_v,kaihom_arr,end)
 			}
 		}
 
+		if(top === "u" || top === "yu") {
+			if(end === "") {
+				tmp = null;
+			} else if(end === "u") {
+				tmp = tmp.replace(/uu/,"u");
+			}
+		}
+
 		if(top === "y" && end === "u") {
 			tmp = null;
 		}
@@ -67,6 +75,7 @@ function foo(isBase, main_v,kaihom_arr,end)
 				t = t.replace(/<span class="kaihom">(.*?)y<\/span><span class="main">∅/,'<span class="merger">$1y')
 				t = t.replace(/<span class="kaihom">(.*?)u<\/span><span class="main">u/,'<span class="merger">$1u')
 				t = t.replace('i</span>i</td>','i</span></td>');
+				t = t.replace('u</span>u</td>','u</span></td>');
 			}
 			ans += t.replace('</td>',"<br>"+search(tmp)+"</td>");
 		} else {
