@@ -2,3 +2,15 @@
 .main{color:blue;}
 .merger{color:#c0c;}
 table {text-align:center;margin: 10px;}
+
+$outer-percentage: 75%;
+$inner-percentage: 90%;
+
+@for $i from 0 through 6 {
+	.outer_shiep#{$i}{
+		background-color:hsl($i*360/7,100%,$outer-percentage);
+	}
+	.inner_shiep#{$i}{
+		background-color:hsl($i*360/7,100%,$inner-percentage);
+	}
+}
