@@ -6,7 +6,7 @@ table {text-align:center;margin: 10px;}
 $outer-percentage: 75%;
 $inner-percentage: 90%;
 
-$multiplier: 1;
+$multiplier: 0.4;
 /* the ratio of hue difference: (-ung / -ng) / (-u - -i)  */
 
 @for $i from 0 through 5 {
