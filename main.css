@@ -11,6 +11,7 @@ table {
   text-align: center;
   margin: 10px; }
 
+/* the ratio of hue difference: (-ung / -ng) / (-u - -i)  */
 .outer_shiep0 {
   background-color: #ff8080; }
 
