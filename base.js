@@ -10,7 +10,7 @@ var section = {
 	"果仮": ["a","ua","ia","ya","ra","rua"],
 	"宕": ["iaŋ","yaŋ","aŋ","uaŋ","iak","yak","ak","uak"],
 	"梗": ["raŋ","ruaŋ","rieŋ","ryeŋ","reŋ","rueŋ","ieŋ","yeŋ","eŋ","ueŋ","rak","ruak","riek","ryek","rek","ruek","iek","yek","ek","uek"],
-	"曾": ["iəŋ","ryək","əŋ","uəŋ","iək","ək","uək"],
+	"曾": ["iəŋ","ryəŋ","ryək","əŋ","uəŋ","iək","ək","uək"],
 	"流": ["yu","u","iu","riu"],
 	"深": ["im","rim","ip","rip"],
 	"咸": ["əm","am","iem","riem","em","iam","yom","rem","ram","əp","ap","iep","riep","ep","iap","yop","rep","rap"]
@@ -43,7 +43,7 @@ function search(a){
 	for(var b in section){ if(section[b].indexOf(a)+1){return b;}}
 }
 
-var all = ["uŋ","yuŋ","oŋ","yoŋ","roŋ","ie","rie","ye","rye","i","ri","yi","ryi","iə","iəi","yui","io","yo","o","ei","uei","iei","riei","yei","ryei","ai","uai","re","rue","rei","ruei","rai","ruai","ui","əi","iai","yoi","in","rin","ryn","yn",/*"rin",*/"yun","iən","un","ən","ian","yon","an","uan","ran","ruan","ren","ruen","en","uen","ien","rien","yen","ryen","eu","ieu","rieu","rau","au","a","ua","ia","ya","ra","rua",/*"ia",*/"iaŋ","yaŋ","aŋ","uaŋ","raŋ","ruaŋ","rieŋ","ryeŋ","reŋ","rueŋ","ieŋ",/*"rieŋ",*/"yeŋ",/*"ryeŋ",*/"eŋ","ueŋ","iəŋ","ryək","əŋ","uəŋ","yu","u","iu","riu","im","rim","əm","am","iem","riem","em","iam","yom","rem","ram",
+var all = ["uŋ","yuŋ","oŋ","yoŋ","roŋ","ie","rie","ye","rye","i","ri","yi","ryi","iə","iəi","yui","io","yo","o","ei","uei","iei","riei","yei","ryei","ai","uai","re","rue","rei","ruei","rai","ruai","ui","əi","iai","yoi","in","rin","ryn","yn",/*"rin",*/"yun","iən","un","ən","ian","yon","an","uan","ran","ruan","ren","ruen","en","uen","ien","rien","yen","ryen","eu","ieu","rieu","rau","au","a","ua","ia","ya","ra","rua",/*"ia",*/"iaŋ","yaŋ","aŋ","uaŋ","raŋ","ruaŋ","rieŋ","ryeŋ","reŋ","rueŋ","ieŋ",/*"rieŋ",*/"yeŋ",/*"ryeŋ",*/"eŋ","ueŋ","iəŋ","ryəŋ","ryək","əŋ","uəŋ","yu","u","iu","riu","im","rim","əm","am","iem","riem","em","iam","yom","rem","ram",
 "uk","yuk","ok","yok","rok",
 "it","rit","ryt","yt","yut","iət","ut","ət","iat",
 "yot","at","uat","rat","ruat","ret","ruet",
