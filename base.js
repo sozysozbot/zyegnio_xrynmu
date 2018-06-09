@@ -63,7 +63,7 @@ function getKaihomRow(arr)
 	return t;
 }
 
-function foo(isBase, main_v,kaihom_arr,end)
+function foo(isBase, main_v,kaihom_arr,end, content_getter)
 {
 	var ans = '';
 	for(var i=0; i<kaihom_arr.length;i++) {
@@ -100,7 +100,7 @@ function foo(isBase, main_v,kaihom_arr,end)
 				t = t.replace('i</span>i</td>','i</span></td>');
 				t = t.replace('u</span>u</td>','u</span></td>');
 			}
-			ans += t.replace('</td>',"<br>"+search(tmp)+"</td>");
+			ans += t.replace('</td>',"<br>"+content_getter(tmp)+"</td>");
 		} else {
 			ans += "<td></td>"
 		}

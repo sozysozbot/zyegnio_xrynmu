@@ -2,13 +2,16 @@
 
 function getRow(isBase, end)
 {
+	var f = function(txt){
+		return ""
+	};
 	return '<tr>'+'<td>-'+end+'</td>' +
-		foo(isBase,'e', ['r','ru','','u','ri','ry','i','y'],end,search) +
-		foo(isBase,'a', ['r','ru','','u','i','y'],end,search) +
-		foo(isBase,'ə', ['','u','ry','i'],end,search) +
-		foo(isBase,'o', ['r','','i','y'],end,search) +
-		foo(isBase,'u', ['u','y'],end,search) +
-		foo(isBase,'∅', ['ri','ry','i','y'],end,search) +
+		foo(isBase,'e', ['r','ru','','u','ri','ry','i','y'],end,f) +
+		foo(isBase,'a', ['r','ru','','u','i','y'],end,f) +
+		foo(isBase,'ə', ['','u','ry','i'],end,f) +
+		foo(isBase,'o', ['r','','i','y'],end,f) +
+		foo(isBase,'u', ['u','y'],end,f) +
+		foo(isBase,'∅', ['ri','ry','i','y'],end,f) +
 		'</tr>';
 }
 

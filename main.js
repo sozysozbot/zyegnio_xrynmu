@@ -3,12 +3,12 @@
 function getRow(isBase, end)
 {
 	return '<tr>'+'<td>-'+end+'</td>' +
-		foo(isBase,'a', ['','r','i','u','ru','y'],end) +
-		foo(isBase,'e', ['','r','i','ri','u','ru','y', 'ry'],end) +
-		foo(isBase,'∅', ['i','ri','y','ry'],end) +
-		foo(isBase,'o', ['','r','i','y'],end) +
-		foo(isBase,'u', ['u','y'],end) +
-		foo(isBase,'ə', ['','i','u','ry'],end) +
+		foo(isBase,'a', ['','r','i','u','ru','y'],end,search) +
+		foo(isBase,'e', ['','r','i','ri','u','ru','y', 'ry'],end,search) +
+		foo(isBase,'∅', ['i','ri','y','ry'],end,search) +
+		foo(isBase,'o', ['','r','i','y'],end,search) +
+		foo(isBase,'u', ['u','y'],end,search) +
+		foo(isBase,'ə', ['','i','u','ry'],end,search) +
 		'</tr>';
 }
 
