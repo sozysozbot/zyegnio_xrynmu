@@ -39,7 +39,7 @@ function generate(id,isBase){
 	str += '</tr>';
 
 
-	var ends = ["" ,"i","u","m","p","n","t","ŋ","k"]
+	var ends = ["" ,"i","n","t","u","m","p","ŋ","k"]
 
 	for(var i=0;i<ends.length;i++){
 		str += getRow(isBase, ends[i]);	

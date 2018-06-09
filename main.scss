@@ -18,6 +18,15 @@ $multiplier: 0.4;
 	}
 }
 
+@for $i from 2 through 4 {
+	.outer_shiep_#{$i}{
+		background-color:hsl($i*360/(6+$multiplier),100%,$outer-percentage);
+	}
+	.inner_shiep_#{$i}{
+		background-color:hsl($i*360/(6+$multiplier),100%,$inner-percentage);
+	}
+}
+
 
 	.outer_shiep#{6}{
 		background-color:hsl((5+$multiplier)*360/(6+$multiplier),100%,$outer-percentage);

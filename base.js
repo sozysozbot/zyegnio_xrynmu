@@ -19,17 +19,17 @@ var section = {
 var shiep_coloring = {
 果仮:"outer_shiep0", 
 蟹:"outer_shiep1", 
-效:"outer_shiep2", 
-咸:"outer_shiep3", 
-山:"outer_shiep4", 
+山:"outer_shiep_2", 
+效:"outer_shiep_3", 
+咸:"outer_shiep_4", 
 宕:"outer_shiep5", 
 梗:"outer_shiep5", 
 江:"outer_shiep6", 
 遇:"inner_shiep0", 
 止:"inner_shiep1", 
-流:"inner_shiep2", 
-深:"inner_shiep3", 
-臻:"inner_shiep4", 
+臻:"inner_shiep_2", 
+流:"inner_shiep_3", 
+深:"inner_shiep_4", 
 曾:"inner_shiep5", 
 通:"inner_shiep6"
 }
