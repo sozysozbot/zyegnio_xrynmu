@@ -211,6 +211,32 @@ function get_section(a) {
 	}
 }
 
+var absorbs = {
+	reu: "rueu", /* required, so that the empty cell should merge*/
+	rem: "ruem",
+	rep: "ruep",
+
+	eu: "ueu",
+	em: "uem",
+	ep: "uep",
+
+	rieu: "ryeu",
+	riem: "ryem",
+	riep: "ryep",
+
+	ieu: "yeu",
+	iem: "yem",
+	iep: "yep",
+
+	rau: "ruau",
+	ram: "ruam",
+	rap: "ruap",
+
+	au: "uau",
+	am: "uam",
+	ap: "uap"
+};
+
 var all = [
 	"uŋ",
 	"yuŋ",
@@ -381,38 +407,55 @@ function getKaihomRow(arr) {
 	return t;
 }
 
+function get_rime(kaihom, main_v, end) {
+	var top = (kaihom + main_v)
+		.replace(/i∅/, "i")
+		.replace(/y∅/, "y")
+		.replace(/uu/, "u");
+
+	var tmp = top + end;
+	if (top === "i" || top === "ri") {
+		if (end === "") {
+			tmp = null;
+		} else if (end === "i") {
+			tmp = tmp.replace(/ii/, "i");
+		}
+	}
+
+	if (top === "u" || top === "yu") {
+		if (end === "") {
+			tmp = null;
+		} else if (end === "u") {
+			tmp = tmp.replace(/uu/, "u");
+		}
+	}
+
+	if (top === "y" && end === "u") {
+		tmp = null;
+	}
+	return tmp;
+}
+
 function foo(isBase, main_v, kaihom_arr, end, content_getter) {
 	var ans = "";
+	var next_is_absorbed = false;
 	for (var i = 0; i < kaihom_arr.length; i++) {
-		var top = (kaihom_arr[i] + main_v)
-			.replace(/i∅/, "i")
-			.replace(/y∅/, "y")
-			.replace(/uu/, "u");
-
-		var tmp = top + end;
-		if (top === "i" || top === "ri") {
-			if (end === "") {
-				tmp = null;
-			} else if (end === "i") {
-				tmp = tmp.replace(/ii/, "i");
-			}
+		if (next_is_absorbed) {
+			next_is_absorbed = false;
+			continue;
 		}
 
-		if (top === "u" || top === "yu") {
-			if (end === "") {
-				tmp = null;
-			} else if (end === "u") {
-				tmp = tmp.replace(/uu/, "u");
-			}
-		}
+		var tmp = get_rime(kaihom_arr[i], main_v, end);
 
-		if (top === "y" && end === "u") {
-			tmp = null;
+		var t = "<td";
+		if (absorbs[tmp] === get_rime(kaihom_arr[i + 1], main_v, end)) {
+			t += ' colspan="2"';
+			next_is_absorbed = true;
 		}
 
 		if (all.indexOf(tmp) + 1) {
-			var t =
-				'<td class="' +
+			t +=
+				' class="' +
 				shiep_coloring[get_section(tmp)] +
 				'"><span class="kaihom">' +
 				kaihom_arr[i] +
@@ -439,7 +482,8 @@ function foo(isBase, main_v, kaihom_arr, end, content_getter) {
 			}
 			ans += t.replace("</td>", "<br>" + content_getter(tmp) + "</td>");
 		} else {
-			ans += "<td></td>";
+			t += "></td>";
+			ans += t;
 		}
 	}
 	return ans;
