@@ -4,18 +4,18 @@ function getRow(isBase, end) {
 		"<td>-" +
 		end +
 		"</td>" +
-		foo(isBase, "a", ["", "r", "i", "u", "ru", "y"], end, search) +
+		foo(isBase, "a", ["", "r", "i", "u", "ru", "y"], end, get_section) +
 		foo(
 			isBase,
 			"e",
 			["", "r", "i", "ri", "u", "ru", "y", "ry"],
 			end,
-			search
+			get_section
 		) +
-		foo(isBase, "∅", ["i", "ri", "y", "ry"], end, search) +
-		foo(isBase, "o", ["", "r", "i", "y"], end, search) +
-		foo(isBase, "u", ["u", "y"], end, search) +
-		foo(isBase, "ə", ["", "i", "u", "ry"], end, search) +
+		foo(isBase, "∅", ["i", "ri", "y", "ry"], end, get_section) +
+		foo(isBase, "o", ["", "r", "i", "y"], end, get_section) +
+		foo(isBase, "u", ["u", "y"], end, get_section) +
+		foo(isBase, "ə", ["", "i", "u", "ry"], end, get_section) +
 		"</tr>"
 	);
 }

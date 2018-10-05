@@ -9,13 +9,13 @@ function getRow(isBase, end) {
 			"e",
 			["r", "ru", "", "u", "ri", "ry", "i", "y"],
 			end,
-			search
+			get_section
 		) +
-		foo(isBase, "a", ["r", "ru", "", "u", "i", "y"], end, search) +
-		foo(isBase, "ə", ["", "u", "ry", "i"], end, search) +
-		foo(isBase, "o", ["r", "", "i", "y"], end, search) +
-		foo(isBase, "u", ["u", "y"], end, search) +
-		foo(isBase, "∅", ["ri", "ry", "i", "y"], end, search) +
+		foo(isBase, "a", ["r", "ru", "", "u", "i", "y"], end, get_section) +
+		foo(isBase, "ə", ["", "u", "ry", "i"], end, get_section) +
+		foo(isBase, "o", ["r", "", "i", "y"], end, get_section) +
+		foo(isBase, "u", ["u", "y"], end, get_section) +
+		foo(isBase, "∅", ["ri", "ry", "i", "y"], end, get_section) +
 		"</tr>"
 	);
 }

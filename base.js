@@ -203,7 +203,7 @@ var historical = [
 	[["銜", "檻", "鑑", "狎"], ["ram"]]
 ];
 
-function search(a) {
+function get_section(a) {
 	for (var b in section) {
 		if (section[b].indexOf(a) + 1) {
 			return b;
@@ -413,7 +413,7 @@ function foo(isBase, main_v, kaihom_arr, end, content_getter) {
 		if (all.indexOf(tmp) + 1) {
 			var t =
 				'<td class="' +
-				shiep_coloring[search(tmp)] +
+				shiep_coloring[get_section(tmp)] +
 				'"><span class="kaihom">' +
 				kaihom_arr[i] +
 				'</span><span class="main">' +
