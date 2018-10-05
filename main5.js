@@ -1,24 +1,27 @@
-
-
-function getRow(isBase, end)
-{
-	var f = function(txt){
-		return ""
+function getRow(isBase, end) {
+	var f = function(txt) {
+		return "";
 	};
-	return '<tr>'+'<td>-'+end+'</td>' +
-		foo(isBase,'e', ['r','ru','','u','ri','ry','i','y'],end,f) +
-		foo(isBase,'a', ['r','ru','','u','i','y'],end,f) +
-		foo(isBase,'ə', ['','u','ry','i'],end,f) +
-		foo(isBase,'o', ['r','','i','y'],end,f) +
-		foo(isBase,'u', ['u','y'],end,f) +
-		foo(isBase,'∅', ['ri','ry','i','y'],end,f) +
-		'</tr>';
+	return (
+		"<tr>" +
+		"<td>-" +
+		end +
+		"</td>" +
+		foo(isBase, "e", ["r", "ru", "", "u", "ri", "ry", "i", "y"], end, f) +
+		foo(isBase, "a", ["r", "ru", "", "u", "i", "y"], end, f) +
+		foo(isBase, "ə", ["", "u", "ry", "i"], end, f) +
+		foo(isBase, "o", ["r", "", "i", "y"], end, f) +
+		foo(isBase, "u", ["u", "y"], end, f) +
+		foo(isBase, "∅", ["ri", "ry", "i", "y"], end, f) +
+		"</tr>"
+	);
 }
 
-
-
-function generate(id,isBase){
-	var str='<table id="'+id+'" border="1">\
+function generate(id, isBase) {
+	var str =
+		'<table id="' +
+		id +
+		'" border="1">\
 	<tr>\
 		<td></td>\
 		<td colspan="8"><span class="main">e</span></td>\
@@ -31,23 +34,21 @@ function generate(id,isBase){
 	<tr>\
 	<td></td>';
 
+	str +=
+		getKaihomRow(["r", "ru", "0", "u", "ri", "ry", "i", "y"]) +
+		getKaihomRow(["r", "ru", "0", "u", "i", "y"]) +
+		getKaihomRow(["0", "u", "ry", "i"]) +
+		getKaihomRow(["r", "0", "i", "y"]) +
+		getKaihomRow(["u", "y"]) +
+		getKaihomRow(["ri", "ry", "i", "y"]);
+	str += "</tr>";
 
-	str+=
-		getKaihomRow(['r','ru','0','u','ri','ry','i','y']) +
-		getKaihomRow(['r','ru','0','u','i','y']) +
-		getKaihomRow(['0','u','ry','i'])+
-		getKaihomRow(['r','0','i','y']) +
-		getKaihomRow(['u','y']) +
-		getKaihomRow(['ri','ry','i','y']);
-	str += '</tr>';
+	var ends = ["", "i", "n", "t", "u", "m", "p", "ŋ", "k"];
 
-
-	var ends = ["" ,"i","n","t","u","m","p","ŋ","k"]
-
-	for(var i=0;i<ends.length;i++){
-		str += getRow(isBase, ends[i]);	
+	for (var i = 0; i < ends.length; i++) {
+		str += getRow(isBase, ends[i]);
 	}
 
-	str += '</table>';
+	str += "</table>";
 	document.write(str);
 }
