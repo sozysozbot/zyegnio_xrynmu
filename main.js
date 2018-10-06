@@ -7,17 +7,6 @@ var printing_order = [
 	["ə", ["", "i", "u", "ry"]]
 ];
 
-var first_row = {
-	a: '<td colspan="6"><span class="main">a</span></td>',
-	e: '<td colspan="8"><span class="main">e</span></td>',
-	"∅":
-		'<td colspan="4"><span class="kaihom">介i</span>+<span class="main">主∅</span></td>',
-	o: '<td colspan="4"><span class="main">o</span></td>',
-	u:
-		'<td colspan="2"><span class="kaihom">介u</span>+<span class="main">主u</span></td>',
-	ə: '<td colspan="4"><span class="main">ə</span></td>'
-};
-
 function generate(id, isBase) {
 	var str = '<table id="' + id + '" border="1"><tr><td></td>';
 	for (var i = 0; i < printing_order.length; i++) {
