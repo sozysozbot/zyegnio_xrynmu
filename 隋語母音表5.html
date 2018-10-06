@@ -5,18 +5,28 @@
 <title>隋語韻母表5</title>
 <link rel="stylesheet" type="text/css" href="main.css">
 <script type="text/javascript" src="base.js"></script>
-<script type="text/javascript" src="main5.js"></script>
 </head>
 <body>
 <a href="./index.html">トップに戻る</a>
 See <a href="https://github.com/Magnezone462/Zyegnio">here</a> for details.
 <script>
+var printing_order = [
+	["e", ["r", "ru", "", "u", "ri", "ry", "i", "y"]],
+	["a", ["r", "ru", "", "u", "i", "y"]],
+	["ə", ["", "u", "ry", "i"]],
+	["o", ["r", "", "i", "y"]],
+	["u", ["u", "y"]],
+	["∅", ["ri", "ry", "i", "y"]]
+];
 
+var f = function(txt) {
+		return "";
+};
 
 document.write('<h3>表層形</h3>')
-generate('actual');
+generate_('actual', false, printing_order, f);
 document.write('<h3>基底形</h3>')
-generate('base', true);
+generate_('base', true, printing_order, f);
 </script>
 </body>
 </html>
