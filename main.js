@@ -7,22 +7,6 @@ var printing_order = [
 	["ə", ["", "i", "u", "ry"]]
 ];
 
-function getRow(isBase, end) {
-	var str = "<tr>" + "<td>-" + end + "</td>";
-
-	for (var i = 0; i < printing_order.length; i++) {
-		str += foo(
-			isBase,
-			printing_order[i][0],
-			printing_order[i][1],
-			end,
-			get_section
-		);
-	}
-
-	return str + "</tr>";
-}
-
 var first_row = {
 	a: '<td colspan="6"><span class="main">a</span></td>',
 	e: '<td colspan="8"><span class="main">e</span></td>',
@@ -50,8 +34,20 @@ function generate(id, isBase) {
 
 	var ends = ["", "i", "n", "t", "u", "m", "p", "ŋ", "k"];
 
-	for (var i = 0; i < ends.length; i++) {
-		str += getRow(isBase, ends[i]);
+	for (var k = 0; k < ends.length; k++) {
+		var s = "<tr>" + "<td>-" + ends[k] + "</td>";
+
+		for (var i = 0; i < printing_order.length; i++) {
+			s += foo(
+				isBase,
+				printing_order[i][0],
+				printing_order[i][1],
+				ends[k],
+				get_section
+			);
+		}
+
+		str += s + "</tr>";
 	}
 
 	str += "</table>";
