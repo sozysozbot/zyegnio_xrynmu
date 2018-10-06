@@ -1,49 +1,51 @@
+var printing_order = [
+	["a", ["", "r", "i", "u", "ru", "y"]],
+	["e", ["", "r", "i", "ri", "u", "ru", "y", "ry"]],
+	["∅", ["i", "ri", "y", "ry"]],
+	["o", ["", "r", "i", "y"]],
+	["u", ["u", "y"]],
+	["ə", ["", "i", "u", "ry"]]
+];
+
 function getRow(isBase, end) {
-	return (
-		"<tr>" +
-		"<td>-" +
-		end +
-		"</td>" +
-		foo(isBase, "a", ["", "r", "i", "u", "ru", "y"], end, get_section) +
-		foo(
+	var str = "<tr>" + "<td>-" + end + "</td>";
+
+	for (var i = 0; i < printing_order.length; i++) {
+		str += foo(
 			isBase,
-			"e",
-			["", "r", "i", "ri", "u", "ru", "y", "ry"],
+			printing_order[i][0],
+			printing_order[i][1],
 			end,
 			get_section
-		) +
-		foo(isBase, "∅", ["i", "ri", "y", "ry"], end, get_section) +
-		foo(isBase, "o", ["", "r", "i", "y"], end, get_section) +
-		foo(isBase, "u", ["u", "y"], end, get_section) +
-		foo(isBase, "ə", ["", "i", "u", "ry"], end, get_section) +
-		"</tr>"
-	);
+		);
+	}
+
+	return str + "</tr>";
 }
 
-function generate(id, isBase) {
-	var str =
-		'<table id="' +
-		id +
-		'" border="1">\
-	<tr>\
-		<td></td>\
-		<td colspan="6"><span class="main">a</span></td>\
-		<td colspan="8"><span class="main">e</span></td>\
-		<td colspan="4"><span class="kaihom">介i</span>+<span class="main">主∅</span></td>\
-		<td colspan="4"><span class="main">o</span></td>\
-		<td colspan="2"><span class="kaihom">介u</span>+<span class="main">主u</span></td>\
-		<td colspan="4"><span class="main">ə</span></td>\
-	</tr>\
-	<tr>\
-	<td></td>';
+var first_row = {
+	a: '<td colspan="6"><span class="main">a</span></td>',
+	e: '<td colspan="8"><span class="main">e</span></td>',
+	"∅":
+		'<td colspan="4"><span class="kaihom">介i</span>+<span class="main">主∅</span></td>',
+	o: '<td colspan="4"><span class="main">o</span></td>',
+	u:
+		'<td colspan="2"><span class="kaihom">介u</span>+<span class="main">主u</span></td>',
+	ə: '<td colspan="4"><span class="main">ə</span></td>'
+};
 
-	str +=
-		getKaihomRow(["0", "r", "i", "u", "ru", "y"]) +
-		getKaihomRow(["0", "r", "i", "ri", "u", "ru", "y", "ry"]) +
-		getKaihomRow(["i", "ri", "y", "ry"]) +
-		getKaihomRow(["0", "r", "i", "y"]) +
-		getKaihomRow(["u", "y"]) +
-		getKaihomRow(["0", "i", "u", "ry"]);
+function generate(id, isBase) {
+	var str = '<table id="' + id + '" border="1"><tr><td></td>';
+	for (var i = 0; i < printing_order.length; i++) {
+		str += first_row[printing_order[i][0]];
+	}
+
+	str += "</tr><tr><td></td>";
+
+	for (var i = 0; i < printing_order.length; i++) {
+		str += getKaihomRow(printing_order[i][1]);
+	}
+
 	str += "</tr>";
 
 	var ends = ["", "i", "n", "t", "u", "m", "p", "ŋ", "k"];

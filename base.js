@@ -212,7 +212,7 @@ function get_section(a) {
 }
 
 var absorbs = {
-	reu: "rueu", /* required, so that the empty cell should merge*/
+	reu: "rueu" /* required, so that the empty cell should merge*/,
 	rem: "ruem",
 	rep: "ruep",
 
@@ -402,7 +402,10 @@ var all = [
 function getKaihomRow(arr) {
 	var t = "";
 	for (var i = 0; i < arr.length; i++) {
-		t += '<td><span class="kaihom">-' + arr[i] + "-</span></td>";
+		t +=
+			'<td><span class="kaihom">-' +
+			(arr[i] === "" ? "0" : arr[i]) +
+			"-</span></td>";
 	}
 	return t;
 }
