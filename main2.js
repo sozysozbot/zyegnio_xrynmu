@@ -1,55 +1,42 @@
-function getRow(isBase, end) {
-	return (
-		"<tr>" +
-		"<td>-" +
-		end +
-		"</td>" +
-		foo(
-			isBase,
-			"e",
-			["r", "ru", "", "u", "ri", "ry", "i", "y"],
-			end,
-			get_section
-		) +
-		foo(isBase, "a", ["r", "ru", "", "u", "i", "y"], end, get_section) +
-		foo(isBase, "ə", ["", "u", "ry", "i"], end, get_section) +
-		foo(isBase, "o", ["r", "", "i", "y"], end, get_section) +
-		foo(isBase, "u", ["u", "y"], end, get_section) +
-		foo(isBase, "∅", ["ri", "ry", "i", "y"], end, get_section) +
-		"</tr>"
-	);
-}
+var printing_order = [
+	["e", ["r", "ru", "", "u", "ri", "ry", "i", "y"]],
+	["a", ["r", "ru", "", "u", "i", "y"]],
+	["ə", ["", "u", "ry", "i"]],
+	["o", ["r", "", "i", "y"]],
+	["u", ["u", "y"]],
+	["∅", ["ri", "ry", "i", "y"]]
+];
 
 function generate(id, isBase) {
-	var str =
-		'<table id="' +
-		id +
-		'" border="1">\
-	<tr>\
-		<td></td>\
-		<td colspan="8"><span class="main">e</span></td>\
-		<td colspan="6"><span class="main">a</span></td>\
-		<td colspan="4"><span class="main">ə</span></td>\
-		<td colspan="4"><span class="main">o</span></td>\
-		<td colspan="2"><span class="kaihom">介u</span>+<span class="main">主u</span></td>\
-		<td colspan="4"><span class="kaihom">介i</span>+<span class="main">主∅</span></td>\
-	</tr>\
-	<tr>\
-	<td></td>';
+	var str = '<table id="' + id + '" border="1"><tr><td></td>';
+	for (var i = 0; i < printing_order.length; i++) {
+		str += first_row[printing_order[i][0]];
+	}
 
-	str +=
-		getKaihomRow(["r", "ru", "0", "u", "ri", "ry", "i", "y"]) +
-		getKaihomRow(["r", "ru", "0", "u", "i", "y"]) +
-		getKaihomRow(["0", "u", "ry", "i"]) +
-		getKaihomRow(["r", "0", "i", "y"]) +
-		getKaihomRow(["u", "y"]) +
-		getKaihomRow(["ri", "ry", "i", "y"]);
+	str += "</tr><tr><td></td>";
+
+	for (var i = 0; i < printing_order.length; i++) {
+		str += getKaihomRow(printing_order[i][1]);
+	}
+
 	str += "</tr>";
 
 	var ends = ["", "i", "n", "t", "u", "m", "p", "ŋ", "k"];
 
-	for (var i = 0; i < ends.length; i++) {
-		str += getRow(isBase, ends[i]);
+	for (var k = 0; k < ends.length; k++) {
+		var s = "<tr>" + "<td>-" + ends[k] + "</td>";
+
+		for (var i = 0; i < printing_order.length; i++) {
+			s += foo(
+				isBase,
+				printing_order[i][0],
+				printing_order[i][1],
+				ends[k],
+				get_section
+			);
+		}
+
+		str += s + "</tr>";
 	}
 
 	str += "</table>";
