@@ -1,8 +1,12 @@
 # 隋拼と前期中古音の軽い紹介
 
+## 前提とする知識
+
+* 音声と音韻の違い、対立の有無という概念
+
 ## 隋拼って何
 
-一言でまとめると、「前期中古音（隋の頃の漢字音）の『体系』（not『厳密な音韻』）をキレイに表すことのできる便利なラテン字転写法」です。隋拼の作者による詳しい説明は[こちら](https://github.com/sozysozbot/zyegnio_xrynmu/blob/master/what_is_zyepheŋ.md)。
+一言でまとめると、「前期中古音（隋の頃の漢字音）の『体系』（neither『厳密な音韻』nor『厳密な音声』）をキレイに表すことのできる便利なラテン字転写法」です。隋拼の作者による詳しい説明は[こちら](https://github.com/sozysozbot/zyegnio_xrynmu/blob/master/what_is_zyepheŋ.md)。
 
 
 ## 韻尾と全体構造
